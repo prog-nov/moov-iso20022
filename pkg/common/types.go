@@ -333,7 +333,7 @@ func (r CopyDuplicate1Code) Validate() error {
 type IBAN2007Identifier string
 
 func (r IBAN2007Identifier) Validate() error {
-	reg := regexp.MustCompile(`[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}`)
+	reg := regexp.MustCompile(`^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$`)
 	if !reg.MatchString(string(r)) {
 		return utils.NewErrValueInvalid("IBAN2007Identifier")
 	}
@@ -344,7 +344,7 @@ func (r IBAN2007Identifier) Validate() error {
 type LEIIdentifier string
 
 func (r LEIIdentifier) Validate() error {
-	reg := regexp.MustCompile(`[A-Z0-9]{18,18}[0-9]{2,2}`)
+	reg := regexp.MustCompile(`^[A-Z0-9]{18,18}[0-9]{2,2}$`)
 	if !reg.MatchString(string(r)) {
 		return utils.NewErrValueInvalid("LEIIdentifier")
 	}
@@ -532,7 +532,7 @@ func (r ActiveOrHistoricCurrencyCode) Validate() error {
 type AnyBICIdentifier string
 
 func (r AnyBICIdentifier) Validate() error {
-	reg := regexp.MustCompile(`[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}`)
+	reg := regexp.MustCompile(`^[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}$`)
 	if !reg.MatchString(string(r)) {
 		return utils.NewErrValueInvalid("AnyBICIdentifier")
 	}
@@ -543,7 +543,7 @@ func (r AnyBICIdentifier) Validate() error {
 type BICFIIdentifier string
 
 func (r BICFIIdentifier) Validate() error {
-	reg := regexp.MustCompile(`[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}`)
+	reg := regexp.MustCompile(`^[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}$`)
 	if !reg.MatchString(string(r)) {
 		return utils.NewErrValueInvalid("BICFIIdentifier")
 	}
@@ -554,7 +554,7 @@ func (r BICFIIdentifier) Validate() error {
 type AnyBICDec2014Identifier string
 
 func (r AnyBICDec2014Identifier) Validate() error {
-	reg := regexp.MustCompile(`[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}`)
+	reg := regexp.MustCompile(`^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$`)
 	if !reg.MatchString(string(r)) {
 		return utils.NewErrValueInvalid("AnyBICDec2014Identifier")
 	}
@@ -565,7 +565,7 @@ func (r AnyBICDec2014Identifier) Validate() error {
 type BICFIDec2014Identifier string
 
 func (r BICFIDec2014Identifier) Validate() error {
-	reg := regexp.MustCompile(`[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}`)
+	reg := regexp.MustCompile(`^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$`)
 	if !reg.MatchString(string(r)) {
 		return utils.NewErrValueInvalid("BICFIDec2014Identifier")
 	}
