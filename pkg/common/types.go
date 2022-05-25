@@ -784,6 +784,44 @@ func (b xsdBase64Binary) MarshalText() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
+// ISOYear
+//
+// Year represented by YYYY (ISO 8601).
+type ISOYear time.Time
+
+func (t *ISOYear) UnmarshalText(text []byte) error {
+	return (*xsdGYear)(t).UnmarshalText(text)
+}
+func (t ISOYear) MarshalText() ([]byte, error) {
+	return xsdGYear(t).MarshalText()
+}
+
+type xsdGYear time.Time
+
+func (t *xsdGYear) UnmarshalText(text []byte) error {
+	return _unmarshalTime(text, (*time.Time)(t), "2006")
+}
+func (t xsdGYear) MarshalText() ([]byte, error) {
+	return []byte((time.Time)(t).Format("2006")), nil
+}
+func (t xsdGYear) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	if (time.Time)(t).IsZero() {
+		return nil
+	}
+	m, err := t.MarshalText()
+	if err != nil {
+		return err
+	}
+	return e.EncodeElement(m, start)
+}
+func (t xsdGYear) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	if (time.Time)(t).IsZero() {
+		return xml.Attr{}, nil
+	}
+	m, err := t.MarshalText()
+	return xml.Attr{Name: name, Value: string(m)}, err
+}
+
 type ISOYearMonth time.Time
 
 func (t *ISOYearMonth) UnmarshalText(text []byte) error {
