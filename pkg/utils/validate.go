@@ -67,8 +67,14 @@ func validateCallbackByValue(data reflect.Value) error {
 func Validate(r interface{}) error {
 	var err error
 	fields := reflect.ValueOf(r).Elem()
+	if fields.Kind() == reflect.Ptr {
+		fields = reflect.Indirect(fields)
+	}
 	for i := 0; i < fields.NumField(); i++ {
 		fieldData := fields.Field(i)
+		if fieldData.IsZero() {
+			continue
+		}
 		kind := fieldData.Kind()
 		if kind == reflect.Slice {
 			for i := 0; i < fieldData.Len(); i++ {
