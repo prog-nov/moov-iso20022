@@ -539,6 +539,22 @@ func (r AnyBICIdentifier) Validate() error {
 	return nil
 }
 
+func (r AnyBICIdentifier) BankCode() string {
+	return string(r)[:4]
+}
+
+func (r AnyBICIdentifier) CountryCode() string {
+	return string(r)[4:6]
+}
+
+func (r AnyBICIdentifier) LocationCode() string {
+	return string(r)[6:8]
+}
+
+func (r AnyBICIdentifier) BranchCode() string {
+	return string(r)[8:]
+}
+
 // Must match the pattern [A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}
 type BICFIIdentifier string
 
@@ -548,6 +564,22 @@ func (r BICFIIdentifier) Validate() error {
 		return utils.NewErrValueInvalid("BICFIIdentifier")
 	}
 	return nil
+}
+
+func (r BICFIIdentifier) BankCode() string {
+	return string(r)[:4]
+}
+
+func (r BICFIIdentifier) CountryCode() string {
+	return string(r)[4:6]
+}
+
+func (r BICFIIdentifier) LocationCode() string {
+	return string(r)[6:8]
+}
+
+func (r BICFIIdentifier) BranchCode() string {
+	return string(r)[8:]
 }
 
 // Must match the pattern [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}
@@ -561,6 +593,22 @@ func (r AnyBICDec2014Identifier) Validate() error {
 	return nil
 }
 
+func (r AnyBICDec2014Identifier) BankCode() string {
+	return string(r)[:4]
+}
+
+func (r AnyBICDec2014Identifier) CountryCode() string {
+	return string(r)[4:6]
+}
+
+func (r AnyBICDec2014Identifier) LocationCode() string {
+	return string(r)[6:8]
+}
+
+func (r AnyBICDec2014Identifier) BranchCode() string {
+	return string(r)[8:]
+}
+
 // Must match the pattern [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}
 type BICFIDec2014Identifier string
 
@@ -570,6 +618,22 @@ func (r BICFIDec2014Identifier) Validate() error {
 		return utils.NewErrValueInvalid("BICFIDec2014Identifier")
 	}
 	return nil
+}
+
+func (r BICFIDec2014Identifier) BankCode() string {
+	return string(r)[:4]
+}
+
+func (r BICFIDec2014Identifier) CountryCode() string {
+	return string(r)[4:6]
+}
+
+func (r BICFIDec2014Identifier) LocationCode() string {
+	return string(r)[6:8]
+}
+
+func (r BICFIDec2014Identifier) BranchCode() string {
+	return string(r)[8:]
 }
 
 // May be one of DOCT, MIST, MISS, MADM
